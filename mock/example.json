@@ -1,0 +1,106 @@
+{
+  "categories": {
+    "Категория 1": [
+      {
+        "name": "Товар 1",
+        "price": 1000,
+        "weekly_sales": 50,
+        "max_storage_time": 30
+      },
+      {
+        "name": "Товар 3",
+        "price": 2000,
+        "weekly_sales": 30,
+        "max_storage_time": 60
+      }
+    ],
+    "Категория 2": [
+      {
+        "name": "Товар 2",
+        "price": 500,
+        "weekly_sales": 100,
+        "max_storage_time": 14
+      }
+    ],
+    "Категория 3": [
+      {
+        "name": "Товар 4",
+        "price": 1500,
+        "weekly_sales": 20,
+        "max_storage_time": 45
+      }
+    ]
+  },
+  "sales": {
+    "high_sales": [
+      {
+        "name": "Товар 2",
+        "category": "Категория 2",
+        "price": 500,
+        "weekly_sales": 100,
+        "max_storage_time": 14
+      }
+    ],
+    "medium_sales": [
+      {
+        "name": "Товар 1",
+        "category": "Категория 1",
+        "price": 1000,
+        "weekly_sales": 50,
+        "max_storage_time": 30
+      },
+      {
+        "name": "Товар 3",
+        "category": "Категория 1",
+        "price": 2000,
+        "weekly_sales": 30,
+        "max_storage_time": 60
+      }
+    ],
+    "low_sales": [
+      {
+        "name": "Товар 4",
+        "category": "Категория 3",
+        "price": 1500,
+        "weekly_sales": 20,
+        "max_storage_time": 45
+      }
+    ]
+  },
+  "storage_time": {
+    "less_than_30_days": [
+      {
+        "name": "Товар 1",
+        "category": "Категория 1",
+        "price": 1000,
+        "weekly_sales": 50,
+        "max_storage_time": 30
+      },
+      {
+        "name": "Товар 2",
+        "category": "Категория 2",
+        "price": 500,
+        "weekly_sales": 100,
+        "max_storage_time": 14
+      }
+    ],
+    "30_to_60_days": [
+      {
+        "name": "Товар 3",
+        "category": "Категория 1",
+        "price": 2000,
+        "weekly_sales": 30,
+        "max_storage_time": 60
+      }
+    ],
+    "more_than_60_days": [
+      {
+        "name": "Товар 4",
+        "category": "Категория 3",
+        "price": 1500,
+        "weekly_sales": 20,
+        "max_storage_time": 45
+      }
+    ]
+  }
+}
