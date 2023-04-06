@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { products } from './mock/products';
-import { clusterizeProducts } from './helpers/clusterizeProducts';
+import { products } from '../mock/products';
+import { clusterizeProducts } from '../helpers/clusterizeProducts';
 import * as d3 from 'd3';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -13,6 +13,7 @@ export const App1 = () => {
 
   useEffect(() => {
     const data = clusterizeProducts(products);
+    console.log(data);
     const svg = d3.select(svgRef.current);
 
     const cluster = d3.cluster().size([height, width - 100]);

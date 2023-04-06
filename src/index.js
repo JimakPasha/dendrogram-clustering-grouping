@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { App2 } from './App2/App2';
+import { store } from './store';
 import './index.css';
-import { App1 } from './App1';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App1 />);
+root.render(
+  <Provider store={store}>
+    <App2 />
+  </Provider>
+);

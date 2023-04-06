@@ -1,25 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { mockTreeData } from './mockTreeData';
 import * as d3 from 'd3';
 
-const data = {
-  name: 'Root',
-  children: [
-    {
-      name: 'Child 1',
-      children: [
-        { name: 'Grandchild 1' },
-        { name: 'Grandchild 2' },
-        { name: 'Grandchild 3' },
-      ],
-    },
-    {
-      name: 'Child 2',
-      children: [{ name: 'Grandchild 4' }, { name: 'Grandchild 5' }],
-    },
-  ],
-};
-
-export const App2 = () => {
+export const ViewDendrogram = () => {
+  const [treeData, setTreeData] = useState(mockTreeData);
   const svgRef = useRef();
 
   useEffect(() => {
@@ -35,7 +19,7 @@ export const App2 = () => {
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    const hierarchyData = d3.hierarchy(data);
+    const hierarchyData = d3.hierarchy(treeData);
     const treeLayout = d3.tree().size([height, width]);
     treeLayout(hierarchyData);
 
@@ -59,7 +43,13 @@ export const App2 = () => {
       .attr('class', 'node')
       .attr('transform', (d) => `translate(${d.y},${d.x})`);
 
-    node.append('circle').attr('r', 5);
+    node
+      .append('circle')
+      .attr('r', 5)
+      .on('click', (e) => {
+        setIsOpenMenu(true);
+        setAnchorEl(e.currentTarget);
+      });
 
     node
       .append('text')
@@ -67,7 +57,24 @@ export const App2 = () => {
       .attr('x', (d) => (d.children ? -8 : 8))
       .style('text-anchor', (d) => (d.children ? 'end' : 'start'))
       .text((d) => d.data.name);
-  }, []);
+  }, [treeData]);
+
+  const addNode = () => {
+    setIsOpenMenu(true);
+    // const newNode = {
+    //   name: 'New Node',
+    //   children: [{ name: 'New Child' }],
+    // };
+
+    // setTreeData((prevData) => {
+    //   // копируем старый массив и добавляем в него новый узел
+    //   const newChildren = [...prevData.children, newNode];
+    //   // возвращаем новый объект с обновленным массивом children
+    //   return { ...prevData, children: newChildren };
+    // });
+  };
+
+  const handleCloseModal = () => {};
 
   return <div ref={svgRef}></div>;
 };
