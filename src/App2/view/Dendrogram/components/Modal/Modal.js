@@ -1,35 +1,28 @@
-import { Typography, Modal as ModalMU, Box } from '@mui/material';
-import { setCloseModal } from '../../../../store/modalSlice';
+import { Modal as ModalMU, Box } from '@mui/material';
+import { AddContent, RenameContent, DeleteContent } from './components';
+import { setSelectedMenuItem, cleanNodeInfo } from '../../../../store/modalMenuSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import {styleBoxModal} from './styles';
 
 export const Modal = () => {
-  const disaptch = useDispatch();
-  const isOpen = useSelector((state) => state.state.modal);
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
+  const dispatch = useDispatch();
+  const {selectedMenuItem} = useSelector((state) => state.modalMenu);
 
   const handleCloseModal = () => {
-    disaptch(setCloseModal());
+    dispatch(setSelectedMenuItem(null));
+    dispatch(cleanNodeInfo());
   };
 
+  const generateBodyModal = () => {
+    if (selectedMenuItem === 'add') return <AddContent handleCloseModal={handleCloseModal} />
+    if (selectedMenuItem === 'rename') return <RenameContent handleCloseModal={handleCloseModal} />
+    if (selectedMenuItem === 'delete') return <DeleteContent handleCloseModal={handleCloseModal} />
+  }
+
   return (
-    <ModalMU open={isOpen} onClose={handleCloseModal}>
-      <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Text in a modal
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-        </Typography>
+    <ModalMU open={selectedMenuItem} onClose={handleCloseModal}>
+      <Box sx={styleBoxModal}>
+        {generateBodyModal()}
       </Box>
     </ModalMU>
   );

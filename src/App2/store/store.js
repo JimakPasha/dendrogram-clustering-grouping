@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { modalSlice } from './modalSlice';
+import { modalMenuSlice } from './modalMenuSlice';
+import { treeSlice } from './treeSlice';
 
 export const store = configureStore({
   reducer: {
-    modal: modalSlice.reducer,
+    modalMenu: modalMenuSlice.reducer,
+    tree: treeSlice.reducer,
   },
 });

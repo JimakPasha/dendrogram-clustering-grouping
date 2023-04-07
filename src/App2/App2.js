@@ -1,4 +1,4 @@
-import { Dendrogram } from './Dendrogram';
+import { Dendrogram } from './view/Dendrogram';
 
 export const App2 = () => {
   return <Dendrogram />;

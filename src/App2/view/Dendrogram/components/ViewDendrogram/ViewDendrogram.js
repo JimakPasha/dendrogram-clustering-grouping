@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
-import { mockTreeData } from './mockTreeData';
+import { useEffect, useRef } from 'react';
+import { setNodeInfo } from '../../../../store/modalMenuSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 import * as d3 from 'd3';
 
 export const ViewDendrogram = () => {
-  const [treeData, setTreeData] = useState(mockTreeData);
+  const disaptch = useDispatch();
   const svgRef = useRef();
+  const {tree} = useSelector((state) => state.tree);
 
   useEffect(() => {
     const margin = { top: 20, right: 90, bottom: 30, left: 90 };
@@ -19,7 +22,7 @@ export const ViewDendrogram = () => {
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    const hierarchyData = d3.hierarchy(treeData);
+    const hierarchyData = d3.hierarchy(tree);
     const treeLayout = d3.tree().size([height, width]);
     treeLayout(hierarchyData);
 
@@ -41,26 +44,25 @@ export const ViewDendrogram = () => {
       .enter()
       .append('g')
       .attr('class', 'node')
-      .attr('transform', (d) => `translate(${d.y},${d.x})`);
+      .attr('transform', (d) => `translate(${d.y},${d.x})`)
+      .on('click', (e) => {
+        // TODO класть в значение ноды в например value и доставть тут из value, а не таким образом. Подсказка: `.attr('d', (d) => {` где в d инфа вся о ноде.
+        disaptch(setNodeInfo({anchorMenuEl: e.currentTarget, nodeName: e.target.__data__.data.name}));
+      });
 
     node
       .append('circle')
-      .attr('r', 5)
-      .on('click', (e) => {
-        setIsOpenMenu(true);
-        setAnchorEl(e.currentTarget);
-      });
+      .attr('r', 5);
 
     node
       .append('text')
       .attr('dy', '.35em')
       .attr('x', (d) => (d.children ? -8 : 8))
       .style('text-anchor', (d) => (d.children ? 'end' : 'start'))
-      .text((d) => d.data.name);
-  }, [treeData]);
+      .text((d) => d.data.name)
+  }, [tree, disaptch]);
 
   const addNode = () => {
-    setIsOpenMenu(true);
     // const newNode = {
     //   name: 'New Node',
     //   children: [{ name: 'New Child' }],
@@ -73,8 +75,6 @@ export const ViewDendrogram = () => {
     //   return { ...prevData, children: newChildren };
     // });
   };
-
-  const handleCloseModal = () => {};
 
   return <div ref={svgRef}></div>;
 };

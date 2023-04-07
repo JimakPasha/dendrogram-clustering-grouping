@@ -1,24 +1,25 @@
-import { useState } from 'react';
 import { optionsMenu } from './optionsMenu';
-import { MenuItem, Menu } from '@mui/material/';
+import { MenuItem, Menu } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { cleanAnchorMenuEl, cleanNodeInfo, setSelectedMenuItem } from '../../../../store/modalMenuSlice';
 
 export const ActionMenu = () => {
-  const [selectedMenuItem, setSelectedMenuItem] = useState('');
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
+  const {anchorMenuEl} = useSelector((state) => state.modalMenu.nodeInfo);
+
 
   const handleClick = (e) => {
-    setSelectedMenuItem(e.currentTarget.dataset.id);
-    handleClose();
+    dispatch(setSelectedMenuItem(e.currentTarget.dataset.id));
+    dispatch(cleanAnchorMenuEl());
+
   };
 
   const handleClose = () => {
-    setIsOpenMenu(false);
-    setAnchorEl(null);
+    dispatch(cleanNodeInfo());
   };
 
   return (
-    <Menu open={isOpenMenu} onClose={handleClose} anchorEl={anchorEl}>
+    <Menu open={anchorMenuEl} onClose={handleClose} anchorEl={anchorMenuEl}>
       {optionsMenu.map(({ id, title }) => (
         <MenuItem key={id} data-id={id} onClick={handleClick}>
           {title}
