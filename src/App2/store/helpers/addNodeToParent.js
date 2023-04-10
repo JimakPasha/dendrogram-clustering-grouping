@@ -1,18 +1,18 @@
-import { findNodeByName } from './findNodeByName';
+import { findNodeById } from './findNodeById';
 
-export const addNodeToParent = (tree, parentName, newNode) => {
-  const node = findNodeByName(tree, parentName);
+export const addNodeToParent = (tree, parentId, newNode) => {
+  const node = findNodeById(tree, parentId);
 
   if (!node) return tree;
 
   const newTree = JSON.parse(JSON.stringify(tree));
-  addNodeToParentHelper(newTree, parentName, newNode);
+  addNodeToParentHelper(newTree, parentId, newNode);
 
   return newTree;
 };
 
-const addNodeToParentHelper = (tree, parentName, newNode) => {
-  const node = findNodeByName(tree, parentName);
+const addNodeToParentHelper = (tree, parentId, newNode) => {
+  const node = findNodeById(tree, parentId);
 
   if (!node) return;
 

@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { setNodeInfo } from '../../../../store/modalMenuSlice';
 import { useDispatch, useSelector } from 'react-redux';
-
 import * as d3 from 'd3';
 
 export const ViewDendrogram = () => {
@@ -39,6 +38,7 @@ export const ViewDendrogram = () => {
         dispatch(
           setNodeInfo({
             anchorMenuEl: e.currentTarget,
+            nodeId: e.target.__data__.data.id,
             nodeName: e.target.__data__.data.name,
           })
         );

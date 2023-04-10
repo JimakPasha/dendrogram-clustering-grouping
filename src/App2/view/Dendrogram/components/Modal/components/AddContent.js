@@ -6,7 +6,7 @@ import { addNewNode } from '../../../../../store/treeSlice';
 export const AddContent = ({ handleCloseModal }) => {
   const disaptch = useDispatch();
   const [inputValue, setInputValue] = useState('');
-  const { nodeName } = useSelector((state) => state.modalMenu.nodeInfo);
+  const { nodeId, nodeName } = useSelector((state) => state.modalMenu.nodeInfo);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -16,7 +16,7 @@ export const AddContent = ({ handleCloseModal }) => {
     e.preventDefault();
     setInputValue('');
     handleCloseModal();
-    disaptch(addNewNode({ newNodeName: inputValue, parentNode: nodeName }));
+    disaptch(addNewNode({ newNodeName: inputValue, parentNodeId: nodeId }));
   };
 
   const handleCancel = () => {

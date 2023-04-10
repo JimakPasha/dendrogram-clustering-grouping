@@ -5,7 +5,7 @@ import { renameNode } from '../../../../../store/treeSlice';
 
 export const RenameContent = ({ handleCloseModal }) => {
   const disaptch = useDispatch();
-  const { nodeName } = useSelector((state) => state.modalMenu.nodeInfo);
+  const { nodeId, nodeName } = useSelector((state) => state.modalMenu.nodeInfo);
   const [inputValue, setInputValue] = useState(nodeName);
 
   const handleInputChange = (e) => {
@@ -16,7 +16,7 @@ export const RenameContent = ({ handleCloseModal }) => {
     e.preventDefault();
     setInputValue('');
     handleCloseModal();
-    disaptch(renameNode({ oldName: nodeName, newName: inputValue }));
+    disaptch(renameNode({ nodeId, newName: inputValue }));
   };
 
   const handleCancel = () => {

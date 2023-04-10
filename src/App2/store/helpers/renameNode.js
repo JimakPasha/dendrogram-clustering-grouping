@@ -1,7 +1,7 @@
-import { findNodeByName } from './findNodeByName';
+import { findNodeById } from './findNodeById';
 
-export const renameNode = (tree, oldName, newName) => {
-  const node = findNodeByName(tree, oldName);
+export const renameNode = (tree, nodeId, newName) => {
+  const node = findNodeById(tree, nodeId);
 
   if (!node) return tree;
 

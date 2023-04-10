@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   nodeInfo: {
     anchorMenuEl: null,
-    nodeName: null
+    nodeId: null,
+    nodeName: null,
   },
   selectedMenuItem: null,
 };
@@ -12,9 +13,10 @@ export const modalMenuSlice = createSlice({
   name: 'modalMenu',
   initialState,
   reducers: {
-    setNodeInfo(state, {payload}) {
+    setNodeInfo(state, { payload }) {
       state.nodeInfo = {
         anchorMenuEl: payload.anchorMenuEl,
+        nodeId: payload.nodeId,
         nodeName: payload.nodeName,
       };
     },
@@ -24,10 +26,15 @@ export const modalMenuSlice = createSlice({
     cleanNodeInfo(state) {
       state.nodeInfo = initialState.nodeInfo;
     },
-    setSelectedMenuItem(state, {payload}) {
+    setSelectedMenuItem(state, { payload }) {
       state.selectedMenuItem = payload;
     },
   },
 });
 
-export const { setNodeInfo, cleanAnchorMenuEl, cleanNodeInfo, setSelectedMenuItem } = modalMenuSlice.actions;
+export const {
+  setNodeInfo,
+  cleanAnchorMenuEl,
+  cleanNodeInfo,
+  setSelectedMenuItem,
+} = modalMenuSlice.actions;
