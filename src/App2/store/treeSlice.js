@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addNodeToParent, removeNode } from './helpers'
+import {
+  addNodeToParent,
+  removeNode,
+  renameNode as renameNodeHepler,
+} from './helpers';
 
 const initialState = {
   tree: {
@@ -47,21 +51,28 @@ const initialState = {
         children: [{ name: 'Grandchild 14' }],
       },
     ],
-  }
+  },
 };
 
 export const treeSlice = createSlice({
   name: 'tree',
   initialState,
   reducers: {
-    addNewNode(state, {payload}) {
-      const newNode = { name: payload.newNodeName};
+    addNewNode(state, { payload }) {
+      const newNode = { name: payload.newNodeName };
       state.tree = addNodeToParent(state.tree, payload.parentNode, newNode);
     },
-    deleteNode(state, {payload}) {
-      state.tree = removeNode(state.tree, payload.nodeName);
-    }
+    deleteNode(state, { payload }) {
+      state.tree = removeNode(state.tree, payload);
+    },
+    renameNode(state, { payload }) {
+      state.tree = renameNodeHepler(
+        state.tree,
+        payload.oldName,
+        payload.newName
+      );
+    },
   },
 });
 
-export const { addNewNode, deleteNode } = treeSlice.actions;
+export const { addNewNode, deleteNode, renameNode } = treeSlice.actions;
