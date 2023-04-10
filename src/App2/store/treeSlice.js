@@ -80,6 +80,9 @@ export const treeSlice = createSlice({
   name: 'tree',
   initialState,
   reducers: {
+    setTree(state, { payload }) {
+      state.tree = payload;
+    },
     addNewNode(state, { payload }) {
       const newNode = { id: uuidv4(), name: payload.newNodeName };
       state.tree = addNodeToParent(state.tree, payload.parentNodeId, newNode);
@@ -97,4 +100,5 @@ export const treeSlice = createSlice({
   },
 });
 
-export const { addNewNode, deleteNode, renameNode } = treeSlice.actions;
+export const { setTree, addNewNode, deleteNode, renameNode } =
+  treeSlice.actions;

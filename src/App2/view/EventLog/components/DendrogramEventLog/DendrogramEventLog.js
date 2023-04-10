@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { setNodeInfo } from '../../../../store/modalMenuSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectTreeEventLog } from '../../../../store/eventLogSlice';
 import * as d3 from 'd3';
 
-export const ViewDendrogram = () => {
+export const DendrogramEventLog = () => {
   const dispatch = useDispatch();
   const svgRef = useRef();
-  const { tree } = useSelector((state) => state.tree);
+  const { tree } = useSelector(selectTreeEventLog);
 
   useEffect(() => {
     const margin = { top: 20, right: 90, bottom: 30, left: 90 };
@@ -33,16 +33,7 @@ export const ViewDendrogram = () => {
       .enter()
       .append('g')
       .attr('class', 'node')
-      .attr('transform', (d) => `translate(${d.y},${d.x})`)
-      .on('click', (e) => {
-        dispatch(
-          setNodeInfo({
-            anchorMenuEl: e.currentTarget,
-            nodeId: e.target.__data__.data.id,
-            nodeName: e.target.__data__.data.name,
-          })
-        );
-      });
+      .attr('transform', (d) => `translate(${d.y},${d.x})`);
 
     node.append('circle').attr('r', 5);
 
