@@ -12,7 +12,29 @@ code {
     monospace;
 }
 
+/* nodes */
+
+.node {
+  cursor: pointer;
+  fill: #2c2c88;
+}
+
+.node_text {
+  z-index: 10000;
+  text-decoration: underline;
+}
+
 .node:hover {
   cursor: pointer;
+  fill: #000;
+}
+
+.node_text:hover {
+  fill: #000;;
   text-decoration: underline;
+}
+
+.link_node {
+  stroke: #000;
+  stroke-width: 3px;
 }
