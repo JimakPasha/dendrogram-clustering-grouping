@@ -18,9 +18,7 @@ export const eventLogSlice = createSlice({
         tree: payload,
       };
       state.versions.push(newVersion);
-      if (!state.selectedVersionId) {
-        state.selectedVersionId = newVersion.id;
-      }
+      state.selectedVersionId = newVersion.id;
     },
     setSelctedVersion(state, { payload }) {
       state.selectedVersionId = payload;
@@ -28,9 +26,13 @@ export const eventLogSlice = createSlice({
   },
 });
 
-export const selectTreeEventLog = (state) =>
-  state.eventLog.versions.find(
-    (version) => version.id === state.eventLog.selectedVersionId
+export const selectTreeEventLog = ({ eventLog }) =>
+  eventLog.versions.find(
+    (version) => version.id === eventLog.selectedVersionId
   );
+
+export const isMatchesCurrentAndSelectedVersion = ({ eventLog }) =>
+  eventLog.selectedVersionId ===
+  eventLog.versions[eventLog.versions.length - 1].id;
 
 export const { setNewVersion, setSelctedVersion } = eventLogSlice.actions;

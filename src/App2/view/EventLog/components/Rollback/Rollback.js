@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Modal as ModalMU, Box, Button, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTreeEventLog } from '../../../../store/eventLogSlice';
+import {
+  selectTreeEventLog,
+  isMatchesCurrentAndSelectedVersion,
+} from '../../../../store/eventLogSlice';
 import { setTree } from '../../../../store/treeSlice';
 import { styleBoxModal } from './styles';
 import { formatDate } from '../../helpers/formatDate';
@@ -10,6 +13,10 @@ export const Rollback = () => {
   const dispatch = useDispatch();
   const [isOpenConfirm, setIsOpenConfirm] = useState(false);
   const { versionNumber, tree, date } = useSelector(selectTreeEventLog);
+  const { versions, selectedVersionId } = useSelector(
+    (state) => state.eventLog
+  );
+  const isDisabledBtn = useSelector(isMatchesCurrentAndSelectedVersion);
 
   const handleClickRollback = () => {
     setIsOpenConfirm(true);
@@ -28,10 +35,14 @@ export const Rollback = () => {
   const handleCancel = () => {
     setIsOpenConfirm(false);
   };
-
+  console.log(isMatchesCurrentAndSelectedVersion);
   return (
     <Box marginTop={'9px'}>
-      <Button variant="contained" onClick={handleClickRollback}>
+      <Button
+        variant="contained"
+        onClick={handleClickRollback}
+        disabled={isDisabledBtn}
+      >
         Rollback diagram to version:{versionNumber}
       </Button>
       <ModalMU open={isOpenConfirm} onClose={handleCloseConfirmModal}>

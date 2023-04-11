@@ -12,8 +12,10 @@ import { setSelctedVersion } from '../../../../store/eventLogSlice';
 
 export const SelectVersion = () => {
   const dispatch = useDispatch();
-  const { versions } = useSelector((state) => state.eventLog);
-  const [version, setVersion] = useState(versions[0].id);
+  const { versions, selectedVersionId } = useSelector(
+    (state) => state.eventLog
+  );
+  const [version, setVersion] = useState(selectedVersionId);
 
   const handleChange = (e) => {
     const selectedId = e.target.value;

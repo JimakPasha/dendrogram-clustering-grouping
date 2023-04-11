@@ -1,14 +1,20 @@
 import { Box } from '@mui/material';
-import { SelectVersion, Rollback, DendrogramEventLog } from './components';
+import {
+  Description,
+  SelectVersion,
+  Rollback,
+  DendrogramEventLog,
+} from './components';
 
 export const EventLog = () => {
   return (
-    <>
-      <Box display="flex" alignItems="flex-start" columnGap={3}>
+    <Box display="flex" flexDirection="column" rowGap={5}>
+      <Box display="flex" columnGap={3}>
         <SelectVersion />
         <Rollback />
       </Box>
+      <Description />
       <DendrogramEventLog />
-    </>
+    </Box>
   );
 };

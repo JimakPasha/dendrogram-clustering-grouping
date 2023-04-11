@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Tab, Divider } from '@mui/material';
+import { Box, Tab } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { setNewVersion } from './../../store/eventLogSlice';
 import { Dendrogram } from '../../view/Dendrogram/Dendrogram';
