@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Tab } from '@mui/material';
+import { Box, Tab, IconButton } from '@mui/material';
+import { Home } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { setNewVersion } from '../../store/eventLogSlice';
 import { Dendrogram } from '../../view/Dendrogram/Dendrogram';
@@ -41,6 +43,11 @@ export const DendrogramPage = () => {
           <Comments />
         </TabPanel>
       </TabContext>
+      <Box position="absolute" top={5} right={5}>
+        <IconButton component={Link} to="/">
+          <Home />
+        </IconButton>
+      </Box>
     </>
   );
 };
