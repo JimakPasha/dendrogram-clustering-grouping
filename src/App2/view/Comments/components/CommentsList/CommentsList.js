@@ -43,7 +43,11 @@ export const CommentsList = () => {
       <List>
         {displayedComments.map(({ id, author, text, liked }) => (
           <ListItem key={id}>
-            <ListItemText primary={author} secondary={text} />
+            <ListItemText
+              style={{ paddingRight: '30px' }}
+              primary={author}
+              secondary={text}
+            />
             <ListItemSecondaryAction>
               <IconButton onClick={() => handleLikeComment(id)} edge="end">
                 {liked ? <Favorite color="primary" /> : <FavoriteBorder />}

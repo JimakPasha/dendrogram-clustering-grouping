@@ -28,11 +28,11 @@ export const DendrogramEventLog = () => {
     treeLayout(hierarchyData);
 
     const node = svg
-      .selectAll('.node')
+      .selectAll('.node-el')
       .data(hierarchyData.descendants())
       .enter()
       .append('g')
-      .attr('class', 'node')
+      .attr('class', 'node-el')
       .attr('transform', (d) => `translate(${d.y},${d.x})`);
 
     node.append('circle').attr('r', 5);
