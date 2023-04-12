@@ -42,7 +42,7 @@ export const StartPage = () => {
   return (
     <Box m={5}>
       <Typography variant="h5" textAlign="center">
-        Enter json (or use predefined json)
+        Use predefined json
       </Typography>
       <Box m={5}>
         <form onSubmit={handleSubmit}>
