@@ -4,6 +4,7 @@ const initialState = {
   nodeInfo: {
     anchorMenuEl: null,
     nodeId: null,
+    parentId: null,
     nodeName: null,
   },
   selectedMenuItem: null,
@@ -17,6 +18,7 @@ export const modalMenuSlice = createSlice({
       state.nodeInfo = {
         anchorMenuEl: payload.anchorMenuEl,
         nodeId: payload.nodeId,
+        parentId: payload.parentId,
         nodeName: payload.nodeName,
       };
     },

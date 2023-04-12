@@ -44,7 +44,7 @@ export const DendrogramEventLog = () => {
       .style('text-anchor', (d) => (d.children ? 'end' : 'start'))
       .text((d) => d.data.name);
 
-    const link = svg
+    svg
       .selectAll('.link')
       .data(hierarchyData.links())
       .enter()

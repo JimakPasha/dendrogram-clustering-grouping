@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   InputLabel,
   MenuItem,
@@ -6,9 +7,8 @@ import {
   Select,
   FormHelperText,
 } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { formatDate } from '../../helpers/formatDate';
 import { setSelctedVersion } from '../../../../store/eventLogSlice';
+import { formatDate } from '../../helpers/formatDate';
 
 export const SelectVersion = () => {
   const dispatch = useDispatch();

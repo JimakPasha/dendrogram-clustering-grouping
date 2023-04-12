@@ -1,5 +1,4 @@
 export const findNodeById = (tree, id) => {
-  // if (!tree || typeof tree !== 'object') return null;
   if (!tree) return null;
 
   if (tree.id === id) return tree;

@@ -39,6 +39,7 @@ export const ViewDendrogram = () => {
           setNodeInfo({
             anchorMenuEl: e.currentTarget,
             nodeId: e.target.__data__.data.id,
+            parentId: e.target.__data__.data.parentId,
             nodeName: e.target.__data__.data.name,
           })
         );
@@ -54,7 +55,7 @@ export const ViewDendrogram = () => {
       .text((d) => d.data.name)
       .attr('class', 'node_text');
 
-    const link = svg
+    svg
       .selectAll('.link')
       .data(hierarchyData.links())
       .enter()
