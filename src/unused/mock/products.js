@@ -130,3 +130,20 @@ export const products = [
     storagePeriod: '12 months',
   },
 ];
+
+function clusterProducts(products, clusterBy) {
+  let clusters = {};
+  for (let i = 0; i < products.length; i++) {
+    let product = products[i];
+    let clusterValue = product[clusterBy];
+    if (clusters[clusterValue]) {
+      clusters[clusterValue].push(product);
+    } else {
+      clusters[clusterValue] = [product];
+    }
+  }
+  return clusters;
+}
+
+let clusters = clusterProducts(products, 'color');
+console.log(clusters);

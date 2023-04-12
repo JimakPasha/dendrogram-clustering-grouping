@@ -5,7 +5,7 @@ export const Dendrogram = () => {
   return (
     <>
       <FormHelperText>
-        By clicking on a node, you can <u>add/remove/rename</u> the node
+        By clicking on a node, you can <u>add/rename/delete</u> the node
       </FormHelperText>
       <ViewDendrogram />
       <ActionMenu />

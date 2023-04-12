@@ -48,7 +48,7 @@ export const StartPage = () => {
         <form onSubmit={handleSubmit}>
           <TextField
             label="Enter json"
-            minRows={10}
+            minRows={25}
             maxRows={25}
             multiline
             variant="outlined"
